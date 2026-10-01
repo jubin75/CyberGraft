@@ -145,6 +145,16 @@ pytest tests/
 Unit tests cover the graph, simulator, adapters, and metrics; integration tests
 run the milestone experiments end-to-end.
 
+## Complete code and testbed
+
+This repository contains the core source, tests, and experiment
+configurations. The complete codebase — including the full testbed, a reusable
+tool for asking the *restorability* question (which lesions can be repaired) on
+any connectome whose wiring is known, with its nested null models, LIF simulator
+with excitatory/inhibitory balance, computational-substitutability metrics, and
+cross-species connectome adapters, together with the accompanying manuscript —
+is available on request. Contact <jubin_hz@163.com>.
+
 ## License
 
 MIT (code). The connectome data are licensed as listed above (zebrafish

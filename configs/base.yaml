@@ -1,0 +1,44 @@
+# Engineering defaults for the M0 reference simulator.  These values are not
+# biological claims and must be recorded in every experiment manifest.
+experiment:
+  name: m0-toy
+  output_dir: results
+  seed: 42
+  max_nodes: 5400
+
+runtime:
+  backend: reference
+  memory_warning_gb: 12.0
+  memory_abort_gb: 14.0
+
+simulation:
+  dt_ms: 0.5
+  duration_ms: 300.0
+  tau_m_ms: 20.0
+  tau_syn_ms: 5.0
+  v_rest: -52.0
+  v_reset: -52.0
+  v_th: -45.0
+  refractory_ms: 2.2
+  synaptic_delay_ms: 1.8
+  # Engineering gain scaling raw synapse-count weights into input drive; 1.0 keeps M0 unchanged.
+  synaptic_gain: 1.0
+
+toy_graph:
+  layers: [20, 380, 380, 20]
+  fanout: 8
+  # Synthetic engineering gain chosen so the layered M0 smoke graph propagates
+  # a direct-current input through to its designated output readout.
+  weight: 18.0
+  weight_jitter: 0.5
+
+stimulus:
+  type: direct_current
+  target_group: input
+  amplitude: 22.0
+  start_ms: 20.0
+  duration_ms: 160.0
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

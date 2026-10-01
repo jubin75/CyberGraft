@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cybergraft"
+version = "0.1.0"
+description = "A connectome-level neural-repair testbed: lesion, graft, and measure substitutability on the larval zebrafish hindbrain connectome."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Bin Ju"}]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "PyYAML>=6.0",
+  "psutil>=5.9",
+]
+
+[project.optional-dependencies]
+apple = ["mlx>=0.20; sys_platform == 'darwin'"]
+dev = ["pytest>=7.4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

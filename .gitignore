@@ -1,0 +1,43 @@
+.venv/
+.venvs/
+__pycache__/
+.opencode/
+.DS_Store
+*.egg-info/
+*.py[cod]
+.pytest_cache/
+results/*
+!results/.gitkeep
+logs/*
+!logs/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+.env
+
+# LaTeX build artifacts (keep only *.tex and *.bib)
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.pdf
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk
+
+# Internal research notes / docs / scripts (local only, not for public repo)
+/update.md
+/newIdea.md
+/experiment.md
+/PRD/
+/scripts/
+/figures/
+
+# Paper draft (private until submission)
+/paper/

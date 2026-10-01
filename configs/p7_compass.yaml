@@ -1,0 +1,39 @@
+extends: base.yaml
+
+experiment:
+  name: p7-compass
+  seed: 42
+
+milestone: M7
+
+data:
+  server: https://neuprint.janelia.org
+  dataset: hemibrain:v1.2.1
+  batch_size: 200
+  timeout_s: 60
+  max_retries: 2
+  min_edge_weight: 1
+  include_types: [EPG, EPGt, PEG, PEN_a(PEN1), PEN_b(PEN2), PFL1, PFL2, PFL3, DNa02]
+  lesion_types: [EPG, PEG]
+  output_type: PFL3
+  input_types: [PEN_a(PEN1), PEN_b(PEN2)]
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 400.0
+  synaptic_delay_ms: 1.8
+
+stimulus:
+  type: rhythmic
+  target_group: input
+  amplitude: 300.0
+  frequency_hz: 5.0
+  start_ms: 20.0
+  duration_ms: 360.0
+
+reproducibility:
+  n_seeds: 3
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

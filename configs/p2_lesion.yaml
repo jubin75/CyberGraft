@@ -1,0 +1,45 @@
+extends: base.yaml
+
+experiment:
+  name: p2-lesion
+  seed: 42
+
+milestone: M2
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  max_nodes: 300
+  include_types: [ABD_m, ABD_i, _DOs_, _Int_]
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 400.0
+
+stimulus:
+  type: poisson
+  target_group: input
+  rate_hz: 120.0
+  # Engineering value chosen so a single Poisson current pulse (single dt step)
+  # can drive the vestibular input (_DOs_) across the reference-LIF threshold
+  # (~7 mV gap). Not a biological claim; recorded in manifest.
+  amplitude: 300.0
+  start_ms: 20.0
+  duration_ms: 200.0
+
+lesion:
+  method: node_silence
+  target_group: lesion
+
+primitive:
+  name: eye_movement
+  output_group: output
+
+reproducibility:
+  n_seeds: 5
+
+acceptance:
+  min_lesion_severity: 0.1
+  min_intact_output_spikes: 1

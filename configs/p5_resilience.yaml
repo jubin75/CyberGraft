@@ -1,0 +1,38 @@
+extends: base.yaml
+
+experiment:
+  name: p5-resilience
+  seed: 42
+
+milestone: M5
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  use_full_connectome: true
+  max_nodes: 700
+  include_types: [ABD_m, ABD_i, _DOs_, _Int_]
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+  lesion_fraction: 0.5
+  n_nulls: 200
+  n_nulls_functional: 30
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 400.0
+
+stimulus:
+  type: rhythmic
+  target_group: input
+  amplitude: 300.0
+  frequency_hz: 5.0
+  start_ms: 20.0
+  duration_ms: 360.0
+
+reproducibility:
+  n_seeds: 3
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

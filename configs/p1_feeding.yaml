@@ -1,0 +1,34 @@
+extends: base.yaml
+
+experiment:
+  name: p1-feeding
+  seed: 42
+
+milestone: M1
+
+data:
+  dataset: male-cns:v1.0
+  server: https://neuprint.janelia.org
+  batch_size: 200
+  timeout_s: 60
+  max_retries: 2
+  cache_dir: data/cache
+  max_input_nodes: 10
+  min_edge_weight: 1
+  max_nodes: 500
+
+pathway:
+  name: feeding
+  stages: [GNG232, DNg67, DNge080, MN9]
+  readout: MN9
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 300.0
+
+stimulus:
+  type: direct_current
+  target_group: input
+  amplitude: 22.0
+  start_ms: 20.0
+  duration_ms: 160.0

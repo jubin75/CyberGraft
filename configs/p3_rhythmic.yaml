@@ -1,0 +1,56 @@
+extends: base.yaml
+
+experiment:
+  name: p3-rhythmic
+  seed: 42
+
+milestone: M3
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  use_full_connectome: true
+  max_nodes: 700
+  include_types: [ABD_m, ABD_i, _DOs_, _Int_]
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+  # lesion_fraction is swept by the residual-filling experiment.
+  lesion_fraction: 0.5
+  max_bypass_candidates: 100
+  n_source: 32
+  source_rate_hz: 1000.0
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 400.0
+
+stimulus:
+  type: rhythmic
+  target_group: input
+  amplitude: 300.0
+  frequency_hz: 5.0
+  start_ms: 20.0
+  duration_ms: 360.0
+
+mapping:
+  weight_min: 0.0
+  weight_max: 1.0
+  tau_pre_ms: 20.0
+  tau_post_ms: 20.0
+  init_scale: 0.05
+  gain: 30.0
+  stdp_lr: 0.01
+  rstdp_lr: 0.05
+  n_episodes: 20
+  tau_elig_ms: 20.0
+
+sweep:
+  lesion_fractions: [0.1, 0.3, 0.5, 0.7, 0.9]
+  lambdas: [0.0, 0.5, 1.0]
+
+reproducibility:
+  n_seeds: 3
+
+acceptance:
+  # informativeness matters iff fit_lam0.slope > fit_lam1.slope
+  min_slope_diff: 0.0

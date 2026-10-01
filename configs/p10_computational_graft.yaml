@@ -1,0 +1,45 @@
+extends: base.yaml
+
+experiment:
+  name: p10-computational-graft
+  seed: 42
+
+milestone: M6
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  max_nodes: 700
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+  lesion_fraction: 0.5
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 1200.0
+  tau_syn_ms: 50.0
+  tau_m_ms: 100.0
+
+ei:
+  inhibitory_fraction: 0.5
+  inhibitory_gain: 1.0
+
+velocity:
+  amplitude: 300.0
+  step_start_ms: 100.0
+  step_duration_ms: 400.0
+  sine_frequency_hz: 5.0
+  sine_start_ms: 0.0
+  sine_duration_ms: 1200.0
+
+readout:
+  rate_window: 12
+  tau_ms: 1000.0
+  test_frac: 0.2
+
+reproducibility:
+  n_seeds: 1
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

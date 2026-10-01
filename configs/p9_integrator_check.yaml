@@ -1,0 +1,50 @@
+extends: base.yaml
+
+experiment:
+  name: p9-integrator-check
+  seed: 42
+
+milestone: M6
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  use_full_connectome: true
+  max_nodes: 700
+  include_types: [ABD_m, ABD_i, _DOs_, _Int_]
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 1000.0
+
+# Step velocity: constant current ON for a duration, then OFF (velocity -> 0).
+# A pure integrator ramps output up during ON and HOLDS after OFF.
+stimulus:
+  type: direct_current
+  target_group: input
+  amplitude: 300.0
+  start_ms: 100.0
+  duration_ms: 400.0
+
+# Sinusoidal velocity: a pure integrator lags output by ~90 degrees.
+sine_stimulus:
+  type: rhythmic
+  target_group: input
+  amplitude: 300.0
+  frequency_hz: 5.0
+  start_ms: 100.0
+  duration_ms: 600.0
+
+integrator_check:
+  settle_ms: 50.0
+  hold_duration_ms: 400.0
+  sine_steady_frac: 0.5
+
+reproducibility:
+  n_seeds: 3
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

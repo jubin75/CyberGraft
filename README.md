@@ -12,7 +12,7 @@ grafting* problem and asks a question prior work does not: not *which lesions
 hurt* (fragility), but *which lesions can be repaired* (restorability), and what
 structural conditions determine that.
 
-![CyberGraft framework overview — (a) grafting logic on the oculomotor circuit, (b) the computational-grafting pipeline with its null models, (c) substitutability as a structural property.](assets/framework_overview.png)
+![CyberGraft framework overview — (a) grafting logic on the oculomotor circuit, (b) the computational-grafting pipeline with its null models, (c) substitutability as a structural property.](figures/framework_overview.png)
 
 ## Findings
 

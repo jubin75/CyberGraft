@@ -27,7 +27,7 @@
    A_i 与 S_i 解耦（rho=+0.045）。
 5. **recurrence 控制**：A_i 与 recurrence 仅 rho=+0.240（中等）；Model 2 ΔR²(A)=**0.292**，
    recurrence 系数为负 → **A_i 非 recurrence 的换名**。
-6. **Branch 判定（PRD §42）**：**Branch A（完整支持）**。
+6. **Branch 判定（PRD §42）**：function-specific graftability 解离 = **Branch A 级强证据**（site 级二分 0 vs 0.637）；attractor-supporting 作为机制 = **Branch B（提示性，非 canonical attractor）**。
 
 ## 尚未完成 / 降级为 supplementary
 

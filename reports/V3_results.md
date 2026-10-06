@@ -28,16 +28,24 @@
 
 **10. relay vs computation role separation** — YES — surviving_Int is computation-only (role +2.86), untyped_direct relay-only (role -1.82).
 
-## 3. Branch determination (PRD §42)
+## 3. Verdict (honest, two-tiered)
 
-**Branch A (full support)** — attractor-supporting dynamics explain computation-oriented graftability, and direct output connectivity explains relay-oriented graftability:
-- A_i -> G_comp (rho=0.856) and A_i adds delta_R²=0.292 beyond recurrence;
-- direct_readout_weight -> S_i (site-level rho=0.543);
-- A_i is not equivalent to recurrence (rho=0.240).
+**Function-specific graftability — STRONG evidence** (site-level binary dissociation):
+- relay: untyped_direct S_i=0.253 (best) vs surviving_Int S_i=0.037 (worst);
+- computation: surviving_Int G_comp=0.637 (only non-zero) vs feedforward G_comp=0.0;
+- direct_readout_weight -> S_i (site-level rho=0.543).
+
+**Attractor-supporting dynamics as mechanism — MODERATE (Branch B), not Branch A**:
+- A_i -> C_i^supp (rho=0.856) and delta_R²(A)=0.292 beyond recurrence are real, but the
+  signal is sparse and A_i/C_i^supp share a "silencing-importance" construction;
+- the persistence is a *leaky* integrator (tau_tangent 6.9-9.3s but the held state still
+  decays), and free-run collapses to rest — so it is NOT evidence of a canonical
+  line/ring attractor. Wording should be "consistent with" / "persistent-state support",
+  not "attractor-supporting dynamics explain" (PRD §42 Branch B, §43).
 
 ## 4. Honest caveats
 
 - **C_i^supp is sparse** (7/592 non-zero): the computation is concentrated in a few integrator-core neurons, so the per-node rho=0.856 is driven by a sparse signal.
 - **Per-node relay under E/I is degenerate** (S_i~0); the relay relationship is a population-level property under E/I balance (site rho=0.543; excitatory-only per-node rho=0.551).
-- **Drosophila manifold (PRD §25) not yet run**; this is zebrafish-only.
+- **Drosophila EPG/PEG manifold**: no canonical ring (PCA = 1-D arc, angular coverage 0.125) under the excitatory-only LIF model — a model limitation, consistent with V2's "sparse line, not dense ring" note.
 - **Attractor support is an operational model-dynamics metric, not a biological label** (PRD §39).

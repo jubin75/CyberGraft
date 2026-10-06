@@ -59,4 +59,4 @@ src/cybergraft/
 | 正对照 τ_tangent（intact / lesioned） | 6.9s / 9.3s（τ_m=100ms） |
 | role index（surviving_Int / untyped_direct） | +2.86 / -1.82 |
 
-判定：**Branch A（完整支持，PRD §42）**。
+判定：function-specific graftability = **强证据（site 级二分 0 vs 0.637）**；attractor-supporting 作为机制 = **提示性（Branch B，非 canonical attractor）**。

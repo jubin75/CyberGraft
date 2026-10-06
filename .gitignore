@@ -41,3 +41,4 @@ paper/*.fdb_latexmk
 # Paper draft (private until submission)
 /paper/
 /V2/paper/
+/V3/paper/

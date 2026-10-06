@@ -1,0 +1,67 @@
+extends: base.yaml
+
+experiment:
+  name: v2-ei-robustness
+  seed: 42
+
+milestone: V2.4
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  max_nodes: 700
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+  lesion_fraction: 0.5
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 1200.0
+  tau_syn_ms: 50.0
+  tau_m_ms: 100.0
+
+ei:
+  inhibitory_fraction: 0.5
+  inhibitory_gain: 1.0
+
+velocity:
+  amplitude: 300.0
+  step_start_ms: 100.0
+  step_duration_ms: 400.0
+  sine_frequency_hz: 5.0
+  sine_start_ms: 0.0
+  sine_duration_ms: 1200.0
+
+readout:
+  rate_window: 12
+  tau_ms: 1000.0
+  test_frac: 0.2
+
+reproducibility:
+  n_seeds: 3
+
+# E/I robustness sweep (Milestone V2.4): 1D perturbation grid around the base
+# point (f=0.5, g=1.0, tau_syn=50ms, tau_m=100ms), one parameter at a time.
+# Varying tau_m, tau_syn, or inhibitory_fraction; the other two stay at base.
+# The unique set is 11 configurations (the base point is shared by all three axes).
+ei_robustness:
+  base:
+    inhibitory_fraction: 0.5
+    inhibitory_gain: 1.0
+    tau_syn_ms: 50.0
+    tau_m_ms: 100.0
+  grid:
+    tau_m_ms: [20.0, 50.0, 100.0, 200.0]
+    tau_syn_ms: [10.0, 25.0, 50.0, 100.0]
+    inhibitory_fraction: [0.3, 0.4, 0.5, 0.6, 0.7]
+  # Integrator phase-lag window (deg), reused from integrator_check._verdict /
+  # ei_sweep._verdict: 30 < lag < 150 == "near +90 deg".
+  phase_lag_window_deg: [30.0, 150.0]
+  top_site: surviving_Int
+  direct_sites: [untyped_direct, gold_top19]
+  # R^2 headroom <= this value counts as "~0" for the feedforward direct-projectors.
+  direct_headroom_max: 0.05
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

@@ -1,0 +1,71 @@
+extends: base.yaml
+
+experiment:
+  name: v3-zfish
+  seed: 42
+  output_dir: results
+
+milestone: V3
+
+data:
+  mat_file: data/raw/zebrafish/ZConnectome_04292021.mat
+  max_nodes: 700
+  readout_type: ABD_m
+  input_type: _DOs_
+  lesion_type: _Int_
+  lesion_fraction: 0.5
+  n_source: 32
+
+simulation:
+  synaptic_gain: 20.0
+  duration_ms: 1200.0
+  tau_syn_ms: 50.0
+  tau_m_ms: 100.0
+
+ei:
+  inhibitory_fraction: 0.5
+  inhibitory_gain: 1.0
+
+velocity:
+  amplitude: 300.0
+  sine_frequency_hz: 5.0
+  sine_start_ms: 0.0
+  sine_duration_ms: 1200.0
+
+readout:
+  rate_window: 12
+  test_frac: 0.2
+
+# Vestibular drive used to reach the baseline state (readout graft S_i + free-run seed).
+stimulus:
+  type: rhythmic
+  target_group: input
+  amplitude: 300.0
+  frequency_hz: 5.0
+  start_ms: 20.0
+  duration_ms: 1180.0
+
+graft:
+  n_target: 19
+  gain_grid: [0.5, 1.0, 2.0, 4.0, 8.0]
+  source_onset_ms: 20.0
+  source_duration_ms: 1180.0
+  step_hold_on_ms: 500.0
+  step_hold_duration_ms: 3000.0
+
+mapping:
+  gain: 30.0
+
+attractor:
+  n_initial_states: 6
+  noise_scale: 1.0
+  silence_start_ms: 200.0
+  silence_duration_ms: 100.0
+  hold_ms: 2000.0
+
+reproducibility:
+  n_seeds: 1
+
+acceptance:
+  min_total_spikes: 1
+  min_output_spikes: 1

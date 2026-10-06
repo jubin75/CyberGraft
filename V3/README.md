@@ -37,10 +37,26 @@ src/cybergraft/
 
 ## 状态
 
-- [x] V3 分支开辟 + 规范对齐（本步）
-- [ ] STEP 1–2：读取 V2 manifest/configs，复用 subgraph / simulator / seed
-- [ ] STEP 3–6：structural（SCC/recurrence/bounded cycles）+ free-run + perturbation + `A_i`
-- [ ] STEP 7：Drosophila manifold validation
-- [ ] STEP 8–10：readout graft（`S_i`）复用 + velocity-only computational graft（`G_i^C`）
-- [ ] STEP 11–13：`A` vs `S`/`C`/`G_comp`、nested models、role index `D_i`
-- [ ] STEP 14–16：Figure 5/6/7、`V3_results.md`、`main.tex`（仅在数据支持时）
+- [x] V3 分支开辟 + 模块层 + 统计层（提交 `abb7f0a`）
+- [x] 正对照：config B 产生持续积分器（τ_tangent 6.9s），损伤不杀计算（9.3s）
+- [x] site 级修正实验：surviving_Int 唯一 G_comp=0.637，relay/计算解耦
+- [x] 逐节点分析：A_i → C_i^supp rho=0.856（n=592）
+- [x] recurrence 控制：ΔR²(A)=0.292，A_i 非 recurrence 换名
+- [x] direct_vs_S 排查：E/I 抑制单神经元 relay（excitatory-only rho=0.551）
+- [x] Figure 5/6/7 + `reports/V3_results.md`（提交 `bbb18ee`）
+- [x] `reports/V3_CHANGELOG.md` + `manifest_v3.json` + `V3/paper/V3_sections.md`
+- [x] Null 模型（structural）：real recurrence 不高于 shuffled nulls（特异性稀疏结构）
+- [ ] Drosophila EPG/PEG manifold：drive-based ring 协议修正中
+- [ ] Dynamical null（A_i/G_comp）：supplementary（PRD §26）
+
+## 关键结果速览
+
+| 结果 | 数值 |
+|---|---|
+| A_i → C_i^supp（per-node Spearman） | +0.856（p<0.0001, n=592） |
+| Model 2 ΔR²(A)（recurrence 控制） | 0.292（recurrence 系数为负） |
+| surviving_Int G_comp | 0.637（唯一非零位点） |
+| 正对照 τ_tangent（intact / lesioned） | 6.9s / 9.3s（τ_m=100ms） |
+| role index（surviving_Int / untyped_direct） | +2.86 / -1.82 |
+
+判定：**Branch A（完整支持，PRD §42）**。

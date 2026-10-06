@@ -1,0 +1,50 @@
+{
+  "v3_code_version": "bbb18ee",
+  "v2_code_version": "caebcfa",
+  "connectome_versions": {
+    "zebrafish": "ZConnectome_04292021 (full 2884-neuron matrix)",
+    "drosophila": "hemibrain:v1.2.1 (live neuPrint)"
+  },
+  "seed": 42,
+  "simulation_configuration": {
+    "dt_ms": 0.5,
+    "tau_syn_ms": 50.0,
+    "tau_m_ms": 100.0,
+    "synaptic_gain": 20.0,
+    "duration_ms": 1200.0
+  },
+  "ei_configuration": {
+    "inhibitory_fraction": 0.5,
+    "inhibitory_gain": 1.0,
+    "note": "Dale's-principle model assignment, not a biological label"
+  },
+  "lesion": {
+    "method": "node_silence",
+    "lesion_type": "_Int_",
+    "lesion_fraction": 0.5,
+    "rank_by": "total weight onto readout (ABD_m)"
+  },
+  "perturbation": {
+    "silence_start_ms": 200.0,
+    "silence_duration_ms": 100.0
+  },
+  "computational_graft": {
+    "source": "velocity only (step-and-hold probe, no DC pedestal)",
+    "W": "per-neuron natural-afferent static-linear (phi_j = net _DOs_ -> j weight) x scalar gain",
+    "gain_grid": [0.5, 1.0, 2.0, 4.0, 8.0],
+    "readout": "static (memoryless) readout of ABD_m output vs p*=integral(v)"
+  },
+  "candidate_nodes": 592,
+  "key_results": {
+    "A_vs_C_supp_rho": 0.856,
+    "model2_delta_r2_A": 0.292,
+    "surviving_Int_G_comp": 0.637,
+    "positive_control_tau_tangent_intact_ms": 6935.0,
+    "positive_control_tau_tangent_lesioned_ms": 9260.0
+  },
+  "missing_metrics": [
+    "A_state (multi-initial-state convergence delta) - deferred, preserved as missing",
+    "A_manifold (Drosophila ring loading) - fly manifold inconclusive (protocol)",
+    "Drosophila computational graft - skipped (no reliable angular-velocity->heading target)"
+  ]
+}

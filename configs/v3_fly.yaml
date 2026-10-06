@@ -1,0 +1,19 @@
+extends: p7_compass.yaml
+
+experiment:
+  name: v3-fly
+
+# V3 attractor-validation run on the fly EPG/PEG ring. Excitatory-only (hemibrain
+# exposes no reliable predictedNt; the dense ring saturates under E/I — see V2).
+simulation:
+  duration_ms: 3000.0
+
+attractor:
+  n_initial_states: 8
+  noise_scale: 1.0
+  silence_start_ms: 200.0
+  silence_duration_ms: 100.0
+  hold_ms: 2000.0
+
+reproducibility:
+  n_seeds: 1

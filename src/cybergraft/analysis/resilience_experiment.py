@@ -102,7 +102,13 @@ def _null_stats(values: np.ndarray, real: float, n_nulls: int) -> Dict[str, Any]
     z_score = float((real - mean) / std) if std > 0.0 else 0.0
     frac_gte = float(np.mean(values >= real))
     frac_lte = float(np.mean(values <= real))
-    p_one_sided = min(frac_gte, frac_lte)
+    # Finite-sample correction p = (b+1)/(B+1), where b is the number of nulls at
+    # least as extreme in the observed direction. This avoids reporting an exact
+    # zero when no null is as extreme as the observed value (smallest p = 1/(B+1)).
+    b_gte = int(np.sum(values >= real))
+    b_lte = int(np.sum(values <= real))
+    b = min(b_gte, b_lte)
+    p_one_sided = (b + 1.0) / (n_nulls + 1.0)
     p_two_sided = min(1.0, 2.0 * p_one_sided)
     return {
         "null_mean": mean,

@@ -16,7 +16,7 @@ data:
   lesion_type: _Int_
   lesion_fraction: 0.5
   n_nulls: 200
-  n_nulls_functional: 30
+  n_nulls_functional: 200
 
 simulation:
   synaptic_gain: 20.0

@@ -43,34 +43,44 @@ def main() -> int:
     pn_A = np.array([r["attractor_support_score"] for r in per_node], float)
     pn_C = np.array([r["computational_support"] for r in per_node], float)
 
-    fig, axes = plt.subplots(1, 4, figsize=(18, 4.4))
+    fig, axes = plt.subplots(2, 2, figsize=(11, 8))
 
     xpos = np.arange(len(pops))
     colors = ["#c44e52" if p == "surviving_Int" else "#4c72b0" for p in pops]
-    axes[0].bar(xpos, S, color=colors)
-    axes[0].set_xticks(xpos); axes[0].set_xticklabels(pops, rotation=45, ha="right", fontsize=8)
-    axes[0].set_ylabel("S_i (readout graftability)")
-    axes[0].set_title("(A) Relay: feedforward-direct best")
+    axes[0, 0].bar(xpos, S, color=colors)
+    axes[0, 0].set_xticks(xpos); axes[0, 0].set_xticklabels(pops, rotation=45, ha="right", fontsize=10)
+    axes[0, 0].set_ylabel("S_i (readout graftability)", fontsize=11)
+    axes[0, 0].set_title("(A) Relay: feedforward-direct best", fontsize=12)
 
-    axes[1].bar(xpos, G, color=colors)
-    axes[1].set_xticks(xpos); axes[1].set_xticklabels(pops, rotation=45, ha="right", fontsize=8)
-    axes[1].set_ylabel("G_comp (computational graftability)")
-    axes[1].set_title("(B) Computation: surviving_Int only")
+    axes[0, 1].bar(xpos, G, color=colors)
+    axes[0, 1].set_xticks(xpos); axes[0, 1].set_xticklabels(pops, rotation=45, ha="right", fontsize=10)
+    axes[0, 1].set_ylabel("G_comp (computational graftability)", fontsize=11)
+    axes[0, 1].set_title("(B) Computation: surviving_Int only", fontsize=12)
 
-    axes[2].scatter(S, G, s=180, c=colors, edgecolor="k")
+    axes[1, 0].scatter(S, G, s=220, c=colors, edgecolor="k")
     for p, s, g in zip(pops, S, G):
-        axes[2].annotate(p, (s, g), textcoords="offset points", xytext=(7, 7), fontsize=8)
-    axes[2].axhline(0, color="gray", lw=0.5); axes[2].axvline(0, color="gray", lw=0.5)
-    axes[2].set_xlabel("S_i (relay)"); axes[2].set_ylabel("G_comp (computation)")
-    axes[2].set_title("(C) Function-specific roles")
+        if p == "surviving_Int":
+            # red ball (top): label below the ball, reading down
+            axes[1, 0].annotate(p, (s, g), textcoords="offset points", xytext=(0, -12),
+                                fontsize=9, rotation=-90, va="top", ha="center")
+        else:
+            # blue balls (bottom): label above the ball, reading up
+            axes[1, 0].annotate(p, (s, g), textcoords="offset points", xytext=(0, 10),
+                                fontsize=9, rotation=90, va="bottom", ha="center")
+    axes[1, 0].axhline(0, color="gray", lw=0.5); axes[1, 0].axvline(0, color="gray", lw=0.5)
+    axes[1, 0].set_xlim(-0.12, 0.32)
+    axes[1, 0].set_ylim(-0.12, 0.80)
+    axes[1, 0].set_xlabel("S_i (relay)", fontsize=11); axes[1, 0].set_ylabel("G_comp (computation)", fontsize=11)
+    axes[1, 0].set_title("(C) Function-specific roles", fontsize=12)
 
-    axes[3].scatter(pn_A, pn_C, s=10, c="#888888", alpha=0.5)
-    axes[3].set_xlabel("A_i (persistent-state support)"); axes[3].set_ylabel("C_i^supp (causal computation)")
-    axes[3].set_title("(D) A_i vs C_i^supp (rho=0.856)")
+    axes[1, 1].scatter(pn_A, pn_C, s=12, c="#888888", alpha=0.5)
+    axes[1, 1].set_xlabel(r"$A_i$ (persistent-state support)", fontsize=11)
+    axes[1, 1].set_ylabel(r"$\Delta G_{\mathrm{comp}}$ (causal computation)", fontsize=11)
+    axes[1, 1].set_title(r"(D) $A_i$ vs $\Delta G_{\mathrm{comp}}$ (rho=0.856)", fontsize=12)
 
-    fig.suptitle("Neural graftability is function-specific", fontsize=13)
+    fig.suptitle("Neural graftability is function-specific", fontsize=15)
     fig.tight_layout(rect=[0, 0, 1, 0.96])
-    fig.savefig("figures/fig6_function_specific_graftability.png", dpi=130)
+    fig.savefig("figures/fig6_function_specific_graftability.png", dpi=300)
     plt.close(fig)
     print("wrote figures/fig6_function_specific_graftability.png")
     for p, s, g in zip(pops, S, G):

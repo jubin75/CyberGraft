@@ -12,7 +12,7 @@ grafting* problem and asks a question prior work does not: not *which lesions
 hurt* (fragility), but *which lesions can be repaired* (restorability), and what
 structural conditions determine that.
 
-![CyberGraft framework overview — (a) grafting logic on the oculomotor circuit, (b) the computational-grafting pipeline with its null models, (c) substitutability as a structural property.](figures/framework_overview.png)
+![CyberGraft framework overview — the computational-grafting pipeline (connectome → subgraph → lesion → graft → recovery) across the larval zebrafish oculomotor integrator and the Drosophila EPG compass, yielding two function-specific assays: readout graft (relay an intact command) and computational graft (recompute the velocity-to-position integral).](figures/fig1.jpg)
 
 ## Findings
 

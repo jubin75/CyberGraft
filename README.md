@@ -127,16 +127,18 @@ sparse line attractor but not dense or electrically coupled attractors.
 
 ```
 src/cybergraft/
-├── graph/        # SparseGraph (CSR), Edge/Node schema, validator
-├── data_ingest/  # connectome adapters: zebrafish, hemibrain (fly), C. elegans, neuPrint client
-├── sim/          # LIF simulator (reference + MLX), stimulus, activity
-├── experiment/   # lesion, graft (bypass), trainable mapping, motor primitive
-├── analysis/     # null models, resilience, rule-wiring, graft substitutability, integrator check, computational substitutability
-└── utils/        # config, logging, manifest, memory guard
+├── graph/              # SparseGraph (CSR), Edge/Node schema, validator
+├── data_ingest/        # connectome adapters: zebrafish, hemibrain (fly), C. elegans, neuPrint client
+├── sim/                # LIF simulator (reference + MLX), stimulus, activity
+├── experiment/         # lesion, graft (bypass), trainable mapping, motor primitive
+├── analysis/           # null models, resilience, rule-wiring, graft substitutability, de-circularization, predictor benchmark, integrator check, computational graft
+├── graft_analysis/     # V3 function-specific graftability: readout vs computational graft, role index
+├── attractor_analysis/ # V3 attractor-support dynamics: A_i score, manifold geometry, perturbation, convergence
+└── utils/              # config, logging, manifest, memory guard
 ```
 
-`configs/` holds the experiment YAML files (`base.yaml` plus `p0`–`p10`), each
-extending `base.yaml`.
+`configs/` holds the experiment YAML files (`base.yaml` plus `p0`–`p13`, `v2_*`,
+and `v3_*`), each extending `base.yaml`.
 
 ## Tests
 

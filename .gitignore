@@ -38,7 +38,7 @@ paper/*.fdb_latexmk
 /PRD/
 /scripts/
 
-# Paper draft (private until submission)
+# Paper draft and V3 workspace (private until submission)
 /paper/
 /V2/paper/
-/V3/paper/
+/V3/
